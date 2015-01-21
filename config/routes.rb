@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
-  root to: 'welcome#index'
+  authenticated :user do
+    resources :recipes
+    root to: 'recipes#index', as: :authenticated_root
+  end
+
+  unauthenticated do
+    root to: 'welcome#index'
+  end
+
   devise_for :users
   
   # The priority is based upon order of creation: first created -> highest priority.
