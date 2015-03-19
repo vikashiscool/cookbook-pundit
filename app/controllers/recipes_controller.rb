@@ -19,6 +19,7 @@ class RecipesController < ApplicationController
   end
 
   def edit
+    authorize @recipe
   end
 
   def create
